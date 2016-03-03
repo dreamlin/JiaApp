@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="WeatherDB" ></dbname>
+    <version value="1" ></version>
+    <list>
+        <mapping class="org.baiyu.jiaapp.bean.WeatherInfoBean"></mapping>
+        <mapping class="org.baiyu.jiaapp.bean.WeatherBean"></mapping>
+        <mapping class="org.baiyu.jiaapp.bean.ConfigBean"></mapping>
+        <mapping class="org.baiyu.jiaapp.bean.CityBean"></mapping>
+    </list>
+</litepal>

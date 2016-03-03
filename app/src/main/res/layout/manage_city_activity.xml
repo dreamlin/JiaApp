@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/manage_city_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLeftBackground="@drawable/ic_back_u"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbRightBackground="@drawable/ic_add_u"
+        custom:tbTitleText="@string/manage_city"
+        custom:tbTitleTextSize="10sp" />
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/manage_city_smListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

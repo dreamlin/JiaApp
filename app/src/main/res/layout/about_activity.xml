@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/about_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLeftBackground="@drawable/ic_back_u"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbTitleText="@string/app_name"
+        custom:tbTitleTextSize="10sp" />
+
+    <TextView
+        android:id="@+id/about_tv_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="气象佳"
+        android:textSize="80sp" />
+
+    <TextView
+        android:id="@+id/about_tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/about_tv_appname"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

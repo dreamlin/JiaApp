@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Topbar">
+        <attr name="tbTitleText" format="string" />
+        <attr name="tbTitleTextSize" format="dimension" />
+        <attr name="tbTitleTextColor" format="color" />
+        <attr name="tbLeftBackground" format="reference|color" />
+        <attr name="tbRightBackground" format="reference|color" />
+        <attr name="tbBackgroundColor" format="color" />
+        <attr name="tbLineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="sbWidth" format="dimension"></attr>
+        <attr name="sbHeight" format="dimension"></attr>
+    </declare-styleable>
+</resources>

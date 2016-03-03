@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/search_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbTitleText="@string/search_top_title"
+        custom:tbTitleTextSize="10sp" />
+
+    <com.astuetz.PagerSlidingTabStrip xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:pstsIndicatorColor="@color/red"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineColor="@color/layout_background"
+        app:pstsUnderlineHeight="2dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs" />
+</LinearLayout>

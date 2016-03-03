@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/location_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLeftBackground="@drawable/ic_back_u"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbTitleText="@string/find_location"
+        custom:tbTitleTextSize="10sp" />
+
+    <TextView
+        android:id="@+id/location_tv_location_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wait_load"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/location_tv_location_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/wait_load"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/location_tv_location_building"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/wait_load"
+        android:textSize="20sp" />
+
+</LinearLayout>

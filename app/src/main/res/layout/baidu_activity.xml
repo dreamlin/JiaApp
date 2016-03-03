@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/baidu_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLeftBackground="@drawable/ic_back_u"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbTitleText="百度搜索"
+        custom:tbTitleTextSize="10sp" />
+
+    <WebView
+        android:id="@+id/baidu_wv_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.baiyu.jiaapp.customui.Topbar xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/setting_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        custom:tbBackgroundColor="@color/bar_and_tab"
+        custom:tbLineColor="@color/line_bg"
+        custom:tbTitleText="@string/settings_top_title"
+        custom:tbTitleTextSize="10sp" />
+
+    <org.baiyu.jiaapp.customui.CycleImageView
+        android:id="@+id/setting_ad"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="20dp"
+        android:background="@color/line_bg" />
+
+    <TextView
+        android:id="@+id/setting_tv_manage_city"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/item_selector"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/manage_city"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/item_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/setting_activity_update_weather_info"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <org.baiyu.jiaapp.customui.SwitchButton xmlns:switch="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/setting_sbtn_update_weather_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            switch:sbHeight="30dp"
+            switch:sbWidth="60dp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_bg" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="20dp"
+        android:background="@color/line_bg" />
+
+    <TextView
+        android:id="@+id/setting_tv_find_location"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/item_selector"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/find_location"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_bg" />
+
+    <TextView
+        android:id="@+id/setting_tv_check_version"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/item_selector"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/setting_check_version"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_bg" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="20dp"
+        android:background="@color/line_bg" />
+
+    <TextView
+        android:id="@+id/setting_tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/item_selector"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/setting_activity_about"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_bg" />
+
+</LinearLayout>

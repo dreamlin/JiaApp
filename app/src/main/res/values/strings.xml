@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">气象佳</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="settings_top_title">设置</string>
+    <string name="wait_load">数据加载中</string>
+    <string name="setting_activity_update_weather_info">自动更新天气</string>
+    <string name="setting_activity_about">关于我们</string>
+    <string name="setting_check_version">检查更新（百度搜索）</string>
+    <string name="find_location">查看我的位置</string>
+    <string name="search_top_title">搜索</string>
+    <string name="manage_city">城市管理</string>
+    <string name="add_city">添加城市</string>
+    <string name="input_city_name">输入城市名称...</string>
+</resources>
