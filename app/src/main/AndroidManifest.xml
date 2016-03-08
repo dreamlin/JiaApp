@@ -63,6 +63,7 @@
                 android:resource="@xml/widgetconfig" />
         </receiver>
 
+        <!-- 桌面组件的定时器 -->
         <service android:name=".TimerService"></service>
 
         <service

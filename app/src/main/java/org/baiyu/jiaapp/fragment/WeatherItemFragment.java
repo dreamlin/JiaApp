@@ -77,8 +77,8 @@ public class WeatherItemFragment extends Fragment {
 
     private void initData(View view) {
         List<WeatherInfoBean> weatherInfoBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherInfoBean.class);
-            if (weatherInfoBeanList.size() > 0) {
-                WeatherInfoBean    weatherInfoBean = weatherInfoBeanList.get(0);
+        if (weatherInfoBeanList.size() > 0) {
+            WeatherInfoBean weatherInfoBean = weatherInfoBeanList.get(0);
 
             Calendar cal = Calendar.getInstance();
             cal.setTime(new Date());

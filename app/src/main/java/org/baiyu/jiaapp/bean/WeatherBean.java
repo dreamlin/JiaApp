@@ -3,6 +3,7 @@ package org.baiyu.jiaapp.bean;
 import org.litepal.crud.DataSupport;
 
 /**
+ * 城市N天天气预报
  * Created by baiyu on 2015-9-15.
  */
 public class WeatherBean extends DataSupport {

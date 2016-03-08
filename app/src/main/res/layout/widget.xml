@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/widget_tv_time"
         android:layout_width="wrap_content"
@@ -28,4 +29,134 @@
         android:text="日期"
         android:textColor="@color/white"
         android:textSize="10pt" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/widget_tv_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="所在城市："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_city_name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/widget_tv_city_name"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/wait_load"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_city_name"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="当前温度："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_temperature_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_city_name"
+            android:layout_toRightOf="@id/widget_tv_temperature"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/wait_load"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_tv_temperature"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="当前天气："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_info_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_tv_temperature"
+            android:layout_toRightOf="@id/widget_tv_info"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/wait_load"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_info"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="当前湿度："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_humidity_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_info"
+            android:layout_toRightOf="@id/widget_tv_humidity"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/wait_load"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_dataUptime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_humidity"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="更新时间："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/widget_tv_dataUptime_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_tv_humidity_value"
+            android:layout_toRightOf="@id/widget_tv_dataUptime"
+            android:shadowColor="#ff000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/wait_load"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 </LinearLayout>

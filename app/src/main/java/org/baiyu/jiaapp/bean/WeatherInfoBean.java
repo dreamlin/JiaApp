@@ -5,6 +5,7 @@ import org.litepal.crud.DataSupport;
 import java.util.Date;
 
 /**
+ * 城市信息
  * Created by baiyu on 2015-9-17.
  */
 public class WeatherInfoBean extends DataSupport {

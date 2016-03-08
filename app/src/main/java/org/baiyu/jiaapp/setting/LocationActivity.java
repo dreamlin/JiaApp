@@ -55,7 +55,7 @@ public class LocationActivity extends Activity {
                     Toast.makeText(LocationActivity.this, "定位失败，请检查gps、网络是否有效", Toast.LENGTH_SHORT).show();
                 }
                 if (isSuccess) {
-                    address = bdLocation.getAddrStr();
+                    address = "（所在城市：" + bdLocation.getCity() + "）" + bdLocation.getAddrStr();
                     describe = bdLocation.getLocationDescribe();
                     List<Poi> list = bdLocation.getPoiList();
                     for (int i = 0; i < list.size(); i++) {
