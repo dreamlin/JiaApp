@@ -116,17 +116,13 @@ public class TimerService extends Service {
     }
 
     private void getWeather(final String cityName) {
+        boolean isPost = readWeatherCache(cityName);
         if (NetworkUtil.GetNetworkType(getApplicationContext()) == NetworkUtil.NetworkType.NETWORKTYPE_NO) {
-            //网络未开启，读取缓存数据
-            List<WeatherInfoBean> weatherInfoBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherInfoBean.class);
-            if (weatherInfoBeanList.size() > 0) {
-                WeatherInfoBean weatherInfoBean = weatherInfoBeanList.get(0);
+            return;
+        }
 
-                List<WeatherBean> weatherBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherBean.class);
-                String tomorrow = weatherBeanList.get(1).getInfo() + " " + weatherBeanList.get(1).getTemperature() + "℃";
-
-                updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), tomorrow, weatherInfoBean.getDataUptime());
-            }
+        //当上一次更新时间小时当前时间减1小时时，不更新天气
+        if (!isPost) {
             return;
         }
 
@@ -217,6 +213,33 @@ public class TimerService extends Service {
 
         request.setTag("volley_getjson_home" + cityName);
         MyApplication.getHttpQueues().add(request);
+    }
+
+    /**
+     * 读取天气缓存，并判断是否需要更新天气信息
+     *
+     * @param cityName
+     * @return
+     */
+    private boolean readWeatherCache(String cityName) {
+        List<WeatherInfoBean> weatherInfoBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherInfoBean.class);
+        if (weatherInfoBeanList.size() > 0) {
+            WeatherInfoBean weatherInfoBean = weatherInfoBeanList.get(0);
+
+            List<WeatherBean> weatherBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherBean.class);
+            String tomorrow = weatherBeanList.get(1).getInfo() + " " + weatherBeanList.get(1).getTemperature() + "℃";
+
+            updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), tomorrow, weatherInfoBean.getDataUptime());
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            cal.add(Calendar.HOUR, -1);
+            if (weatherInfoBean.getUpdateTime().compareTo(cal.getTime()) > 0) {
+                //上次更新时间小于当前时间减1小时，不更新天气
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

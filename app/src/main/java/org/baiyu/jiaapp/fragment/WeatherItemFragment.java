@@ -80,10 +80,6 @@ public class WeatherItemFragment extends Fragment {
         if (weatherInfoBeanList.size() > 0) {
             WeatherInfoBean weatherInfoBean = weatherInfoBeanList.get(0);
 
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(new Date());
-            cal.add(Calendar.HOUR, -1);
-
             //上次更新时间大于当前时间减1小时，读取数据库缓存
             tv_city_name_value.setText(weatherInfoBean.getCityName());
             tv_temperature_value.setText(weatherInfoBean.getTemperatur());
@@ -94,6 +90,9 @@ public class WeatherItemFragment extends Fragment {
             weatherBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherBean.class);
             weatherBeanList.add(0, new WeatherBean("城市", "日期", "天气", "日出日落", "温度"));
 
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            cal.add(Calendar.HOUR, -1);
             if (weatherInfoBean.getUpdateTime().compareTo(cal.getTime()) < 0) {
                 //上次更新时间小于当前时间减1小时，请求网络更新
                 isPost = true;
