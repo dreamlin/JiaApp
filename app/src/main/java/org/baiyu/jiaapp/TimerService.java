@@ -121,7 +121,11 @@ public class TimerService extends Service {
             List<WeatherInfoBean> weatherInfoBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherInfoBean.class);
             if (weatherInfoBeanList.size() > 0) {
                 WeatherInfoBean weatherInfoBean = weatherInfoBeanList.get(0);
-                updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), weatherInfoBean.getDataUptime());
+
+                List<WeatherBean> weatherBeanList = DataSupport.where("cityName = ?", cityName).find(WeatherBean.class);
+                String tomorrow = weatherBeanList.get(1).getInfo() + " " + weatherBeanList.get(1).getTemperature() + "℃";
+
+                updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), tomorrow, weatherInfoBean.getDataUptime());
             }
             return;
         }
@@ -161,8 +165,6 @@ public class TimerService extends Service {
                         weatherInfoBean.setDataUptime(CommonUtil.getDataTime(dataUptime));
                         weatherInfoBean.setUpdateTime(new Date());
                         weatherInfoBean.save();
-                        //更新界面
-                        updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), weatherInfoBean.getDataUptime());
                         //获取、保存天气信息
                         weatherBeanList = new ArrayList<WeatherBean>();
                         JSONArray weatherJson = dataJson.getJSONArray("weather");
@@ -194,6 +196,10 @@ public class TimerService extends Service {
                         DataSupport.deleteAll(WeatherBean.class, "cityName = ?", cityName);
                         DataSupport.saveAll(weatherBeanList);
 
+                        String tomorrow = weatherBeanList.get(1).getInfo() + " " + weatherBeanList.get(1).getTemperature() + "℃";
+                        //更新界面
+                        updateWeatherViews(weatherInfoBean.getCityName(), weatherInfoBean.getTemperatur(), weatherInfoBean.getHumidity(), weatherInfoBean.getInfo(), tomorrow, weatherInfoBean.getDataUptime());
+
                         //Toast.makeText(getApplicationContext(), "天气更新成功", Toast.LENGTH_SHORT).show();
                     } else {
                         //天气更新失败，天气预报接口有误
@@ -215,18 +221,21 @@ public class TimerService extends Service {
 
     /**
      * 更新界面天气信息
+     *
      * @param cityName
      * @param temperatur
      * @param humidity
      * @param info
+     * @param tomorrow
      * @param dataUptime
      */
-    private void updateWeatherViews(String cityName, String temperatur, String humidity, String info, String dataUptime) {
+    private void updateWeatherViews(String cityName, String temperatur, String humidity, String info, String tomorrow, String dataUptime) {
         RemoteViews rv = new RemoteViews(getPackageName(), R.layout.widget);
         rv.setTextViewText(R.id.widget_tv_city_name_value, cityName);
         rv.setTextViewText(R.id.widget_tv_temperature_value, temperatur);
         rv.setTextViewText(R.id.widget_tv_humidity_value, humidity);
         rv.setTextViewText(R.id.widget_tv_info_value, info);
+        rv.setTextViewText(R.id.widget_tv_tomorrow_value, tomorrow);
         rv.setTextViewText(R.id.widget_tv_dataUptime_value, dataUptime);
         AppWidgetManager manager = AppWidgetManager.getInstance(getApplicationContext());
         ComponentName cn = new ComponentName(getApplicationContext(), WidgetProvider.class);
