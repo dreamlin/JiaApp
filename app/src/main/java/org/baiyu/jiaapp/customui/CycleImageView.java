@@ -53,6 +53,10 @@ public class CycleImageView extends LinearLayout {
      * 手机密度
      */
     private float mScale;
+
+    //自动轮播的时间间隔
+    private final static int TIME_INTERVAL = 3000;
+
     private boolean isStop;
 
     public CycleImageView(Context context) {
@@ -132,25 +136,18 @@ public class CycleImageView extends LinearLayout {
     }
 
     /**
-     * 暂停轮播—用于节省资源
-     */
-    public void pushImageCycle() {
-        stopImageTimerTask();
-    }
-
-    /**
      * 图片滚动任务
      */
-    private void startImageTimerTask() {
+    public void startImageTimerTask() {
         stopImageTimerTask();
         // 图片滚动
-        mHandler.postDelayed(mImageTimerTask, 3000);
+        mHandler.postDelayed(mImageTimerTask, TIME_INTERVAL);
     }
 
     /**
      * 停止图片滚动任务
      */
-    private void stopImageTimerTask() {
+    public void stopImageTimerTask() {
         isStop = true;
         mHandler.removeCallbacks(mImageTimerTask);
     }
@@ -166,7 +163,7 @@ public class CycleImageView extends LinearLayout {
             if (mImageViews != null) {
                 mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
                 if (!isStop) {  //if  isStop=true   //当你退出后 要把这个给停下来 不然 这个一直存在 就一直在后台循环
-                    mHandler.postDelayed(mImageTimerTask, 3000);
+                    mHandler.postDelayed(mImageTimerTask, TIME_INTERVAL);
                 }
             }
         }

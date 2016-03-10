@@ -86,6 +86,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "当前位置" + position, Toast.LENGTH_SHORT).show();
             }
         });
+        cycleImageView.startImageCycle();
     }
 
     private void initView(View view) {
@@ -122,14 +123,14 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        cycleImageView.startImageCycle();
+    public void onStart() {
+        super.onStart();
+        cycleImageView.startImageTimerTask();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        cycleImageView.pushImageCycle();
+        cycleImageView.stopImageTimerTask();
     }
 }
