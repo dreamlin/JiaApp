@@ -126,6 +126,8 @@ public class CycleImageView extends LinearLayout {
      * 图片轮播(手动控制自动轮播与否，便于资源控件）
      */
     public void startImageCycle() {
+        //下面这行代码用于实现界面刚打开时右划时出现最后一张图片
+        mViewPager.setCurrentItem((10000 / mImageViews.length) * mImageViews.length);
         startImageTimerTask();
     }
 
@@ -176,10 +178,27 @@ public class CycleImageView extends LinearLayout {
      * @author minking
      */
     private final class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
+
+        //是否在自动切换中
+        //boolean isAutoPlay = false;
+
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (state == ViewPager.SCROLL_STATE_IDLE)
-                startImageTimerTask();
+
+            switch (state) {
+                case ViewPager.SCROLL_STATE_DRAGGING:
+                    // 手势滑动
+                    //isAutoPlay = false;
+                    break;
+                case ViewPager.SCROLL_STATE_SETTLING:
+                    // 手势未滑动
+                    //isAutoPlay = true;
+                    break;
+                case ViewPager.SCROLL_STATE_IDLE:
+                    //手势滑动结束
+                    startImageTimerTask();
+                    break;
+            }
         }
 
         @Override

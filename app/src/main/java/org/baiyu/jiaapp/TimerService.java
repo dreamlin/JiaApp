@@ -68,7 +68,7 @@ public class TimerService extends Service {
             public void run() {
                 updateWeather();
             }
-        }, 0, 60 * 60 * 1000);
+        }, 0, 30 * 60 * 1000);
     }
 
     private LocationClient locationClient;
