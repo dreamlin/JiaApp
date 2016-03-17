@@ -56,6 +56,7 @@ public class TimerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -70,6 +71,20 @@ public class TimerService extends Service {
                 updateWeather();
             }
         }, 0, 20 * 60 * 1000);
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                initView();
+            }
+        }, 30 * 1000);
+    }
+
+    private void initView() {
+        String cityName = ConfigService.getValue(EnvionmentVariables.LOCATION_CITY_NAME);
+        if (cityName != null) {
+            readWeatherCache(cityName);
+        }
     }
 
     private LocationClient locationClient;
@@ -117,11 +132,6 @@ public class TimerService extends Service {
             });
             initLocation();
             locationClient.start();
-        } else {
-            String cityName = ConfigService.getValue(EnvionmentVariables.LOCATION_CITY_NAME);
-            if (cityName != null) {
-                readWeatherCache(cityName);
-            }
         }
     }
 
