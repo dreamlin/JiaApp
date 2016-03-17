@@ -22,6 +22,7 @@ import com.baidu.location.Poi;
 import org.baiyu.jiaapp.app.MyApplication;
 import org.baiyu.jiaapp.bean.WeatherBean;
 import org.baiyu.jiaapp.bean.WeatherInfoBean;
+import org.baiyu.jiaapp.service.ConfigService;
 import org.baiyu.jiaapp.util.CommonUtil;
 import org.baiyu.jiaapp.util.NetworkUtil;
 import org.json.JSONArray;
@@ -68,7 +69,7 @@ public class TimerService extends Service {
             public void run() {
                 updateWeather();
             }
-        }, 0, 30 * 60 * 1000);
+        }, 0, 20 * 60 * 1000);
     }
 
     private LocationClient locationClient;
@@ -105,6 +106,10 @@ public class TimerService extends Service {
                         //定位失败，请检查gps、网络是否有效
                     }
                     if (isSuccess) {
+                        if (!ConfigService.equalsValue(EnvionmentVariables.LOCATION_CITY_NAME, bdLocation.getCity(), false)) {
+                            ConfigService.saveOrUpdate(EnvionmentVariables.LOCATION_CITY_NAME, bdLocation.getCity());
+                            Toast.makeText(getApplicationContext(), "天气更新成功", Toast.LENGTH_SHORT).show();
+                        }
                         getWeather(bdLocation.getCity());
                     }
                     locationClient.stop();
@@ -112,6 +117,11 @@ public class TimerService extends Service {
             });
             initLocation();
             locationClient.start();
+        } else {
+            String cityName = ConfigService.getValue(EnvionmentVariables.LOCATION_CITY_NAME);
+            if (cityName != null) {
+                readWeatherCache(cityName);
+            }
         }
     }
 

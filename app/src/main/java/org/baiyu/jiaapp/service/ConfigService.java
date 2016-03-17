@@ -11,6 +11,14 @@ import java.util.List;
  */
 public class ConfigService {
 
+    public static String getValue(String key) {
+        List<ConfigBean> configBeanList = DataSupport.where("key = ?", key).find(ConfigBean.class);
+        if (configBeanList.size() > 0) {
+            return configBeanList.get(0).getValue();
+        }
+        return null;
+    }
+
     public static boolean equalsValue(String key, String value, boolean defaultValue) {
         List<ConfigBean> configBeanList = DataSupport.where("key = ?", key).find(ConfigBean.class);
         if (configBeanList.size() > 0) {
