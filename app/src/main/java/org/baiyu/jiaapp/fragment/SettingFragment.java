@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
-    private TextView tv_manage_city, tv_find_location, tv_check_version, tv_about;
+    private TextView tv_manage_city, tv_find_location, tv_baidu_search, tv_check_version, tv_about;
     private SwitchButton sbtn_update_weather_info;
 
     private CycleImageView cycleImageView;
@@ -62,6 +62,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private void initEvent() {
         tv_manage_city.setOnClickListener(this);
         tv_find_location.setOnClickListener(this);
+        tv_baidu_search.setOnClickListener(this);
         tv_check_version.setOnClickListener(this);
         tv_about.setOnClickListener(this);
 
@@ -92,6 +93,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private void initView(View view) {
         tv_manage_city = (TextView) view.findViewById(R.id.setting_tv_manage_city);
         tv_find_location = (TextView) view.findViewById(R.id.setting_tv_find_location);
+        tv_baidu_search = (TextView) view.findViewById(R.id.setting_tv_baidu_search);
         tv_check_version = (TextView) view.findViewById(R.id.setting_tv_check_version);
         tv_about = (TextView) view.findViewById(R.id.setting_tv_about);
         sbtn_update_weather_info = (SwitchButton) view.findViewById(R.id.setting_sbtn_update_weather_info);
@@ -111,7 +113,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 getActivity().startActivity(locationIntent);
                 break;
             case R.id.setting_tv_check_version:
-                //Toast.makeText(getActivity(), "您当前版本为最新版", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "您当前版本为最新版", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.setting_tv_baidu_search:
                 Intent baiduIntent = new Intent(getActivity(), BaiduActivity.class);
                 getActivity().startActivity(baiduIntent);
                 break;

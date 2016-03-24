@@ -14,25 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.baiyu.jiaapp.fragment.SearchFragment;
 import org.baiyu.jiaapp.fragment.SettingFragment;
 import org.baiyu.jiaapp.fragment.WeatherFragment;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private LinearLayout mTabWeather;
-    private LinearLayout mTabSearch;
     private LinearLayout mTabSettings;
 
     private ImageButton mImgWeather;
-    private ImageButton mImgSearch;
     private ImageButton mImgSettings;
 
     private TextView mTvWeather;
-    private TextView mTvSearch;
     private TextView mTvSettings;
 
     private Fragment mWeatherFragment;
-    private Fragment mSearchFragment;
     private Fragment mSettingsFragment;
 
     @Override
@@ -47,21 +42,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void initEvent() {
         mTabWeather.setOnClickListener(this);
-        mTabSearch.setOnClickListener(this);
         mTabSettings.setOnClickListener(this);
     }
 
     private void initView() {
         mTabWeather = (LinearLayout) findViewById(R.id.id_tab_index);
-        mTabSearch = (LinearLayout) findViewById(R.id.id_tab_search);
         mTabSettings = (LinearLayout) findViewById(R.id.id_tab_settings);
 
         mImgWeather = (ImageButton) findViewById(R.id.id_tab_index_img);
-        mImgSearch = (ImageButton) findViewById(R.id.id_tab_search_img);
         mImgSettings = (ImageButton) findViewById(R.id.id_tab_settings_img);
 
         mTvWeather = (TextView) findViewById(R.id.tv_tab_index_text);
-        mTvSearch = (TextView) findViewById(R.id.tv_tab_search_text);
         mTvSettings = (TextView) findViewById(R.id.tv_tab_settings_text);
     }
 
@@ -84,16 +75,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 mTvWeather.setTextColor(Color.rgb(255, 116, 24));
                 break;
             case 1:
-                if (mSearchFragment == null) {
-                    mSearchFragment = new SearchFragment();
-                    transaction.add(R.id.id_content, mSearchFragment);
-                } else {
-                    transaction.show(mSearchFragment);
-                }
-                mImgSearch.setBackgroundResource(R.drawable.tab_index_search_pressed);
-                mTvSearch.setTextColor(Color.rgb(255, 116, 24));
-                break;
-            case 2:
                 if (mSettingsFragment == null) {
                     mSettingsFragment = new SettingFragment();
                     transaction.add(R.id.id_content, mSettingsFragment);
@@ -113,9 +94,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (mWeatherFragment != null) {
             transaction.hide(mWeatherFragment);
         }
-        if (mSearchFragment != null) {
-            transaction.hide(mSearchFragment);
-        }
         if (mSettingsFragment != null) {
             transaction.hide(mSettingsFragment);
         }
@@ -128,11 +106,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.id_tab_index:
                 setSelect(0);
                 break;
-            case R.id.id_tab_search:
-                setSelect(1);
-                break;
             case R.id.id_tab_settings:
-                setSelect(2);
+                setSelect(1);
                 break;
             default:
                 break;
@@ -144,10 +119,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      */
     private void resetImgs() {
         mImgWeather.setBackgroundResource(R.drawable.tab_index_normal);
-        mImgSearch.setBackgroundResource(R.drawable.tab_index_search_normal);
         mImgSettings.setBackgroundResource(R.drawable.tab_settings_normal);
         mTvWeather.setTextColor(Color.rgb(220, 220, 220));
-        mTvSearch.setTextColor(Color.rgb(220, 220, 220));
         mTvSettings.setTextColor(Color.rgb(220, 220, 220));
     }
 
