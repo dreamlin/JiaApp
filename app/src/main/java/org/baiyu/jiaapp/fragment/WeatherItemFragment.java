@@ -48,6 +48,10 @@ public class WeatherItemFragment extends Fragment {
         this.cityName = cityName;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
     private TextView tv_city_name_value;//城市名称
     private TextView tv_temperature_value;//温度
     private TextView tv_humidity_value;//湿度

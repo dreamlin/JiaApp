@@ -2,7 +2,10 @@ package org.baiyu.jiaapp.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,28 +26,24 @@ import java.util.List;
 public class WeatherFragment extends Fragment {
 
     private ViewPager viewPager = null;
-    private FragmentPagerAdapter mAdapter;
-    private List<Fragment> mFragments;
+    private FragmentStatePagerAdapter mAdapter;
+    private List<WeatherItemFragment> mFragments;
     private ImageView[] img = null;
     //记录当前选中位置
     private int currentIndex;
+
+    private LinearLayout layout = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_activity, container, false);
 
-        mFragments = new ArrayList<Fragment>();
-        List<CityBean> cityBeanList = DataSupport.order("time desc").find(CityBean.class);
-        if (cityBeanList.size() == 0) {
-            CityBean city = new CityBean();
-            city.setCityName("嘉兴");
-            city.save();
-            cityBeanList.add(city);
-        }
-        for (int i = 0; i < cityBeanList.size(); i++) {
-            mFragments.add(new WeatherItemFragment(cityBeanList.get(i).getCityName()));
-        }
-        mAdapter = new FragmentPagerAdapter(getFragmentManager()) {
+        mFragments = new ArrayList<WeatherItemFragment>();
+
+        initView(view);
+        initData(null);
+
+        mAdapter = new FragmentStatePagerAdapter(getFragmentManager()) {
             @Override
             public int getCount() {
                 return mFragments.size();
@@ -54,11 +53,15 @@ public class WeatherFragment extends Fragment {
             public Fragment getItem(int position) {
                 return mFragments.get(position);
             }
+
+            @Override
+            public int getItemPosition(Object object) {
+                return POSITION_NONE;
+            }
         };
 
-        viewPager = (ViewPager) view.findViewById(R.id.weather_viewPager);
         viewPager.setAdapter(mAdapter);
-        viewPager.setOffscreenPageLimit(cityBeanList.size());
+        viewPager.setOffscreenPageLimit(mFragments.size());
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -82,8 +85,34 @@ public class WeatherFragment extends Fragment {
             }
         });
 
-        img = new ImageView[mFragments.size()];
-        LinearLayout layout = (LinearLayout) view.findViewById(R.id.weather_viewGroup);
+        initImgView(mFragments.size());
+
+        return view;
+    }
+
+    private void initData(List<CityBean> cityBeanList) {
+        if (cityBeanList == null) {
+            cityBeanList = DataSupport.order("time desc").find(CityBean.class);
+        }
+        if (cityBeanList.size() == 0) {
+            CityBean city = new CityBean();
+            city.setCityName("嘉兴");
+            city.save();
+            cityBeanList.add(city);
+        }
+        for (int i = 0; i < cityBeanList.size(); i++) {
+            mFragments.add(new WeatherItemFragment(cityBeanList.get(i).getCityName()));
+        }
+    }
+
+    private void initView(View view) {
+        viewPager = (ViewPager) view.findViewById(R.id.weather_viewPager);
+        layout = (LinearLayout) view.findViewById(R.id.weather_viewGroup);
+    }
+
+    private void initImgView(int size) {
+        layout.removeAllViews();
+        img = new ImageView[size];
         for (int i = 0; i < img.length; i++) {
             img[i] = new ImageView(getActivity());
             img[i].setImageResource(R.drawable.point);
@@ -97,6 +126,35 @@ public class WeatherFragment extends Fragment {
         //设置为白色，即选中状态
         img[currentIndex].setEnabled(true);
 
-        return view;
+        viewPager.setCurrentItem(0);
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        boolean isUpdate = true;
+        List<CityBean> cityBeanList = DataSupport.order("time desc").find(CityBean.class);
+        if (cityBeanList.size() == mFragments.size()) {
+            //是否相同
+            boolean isEquals = true;
+            for (int i = 0; i < mFragments.size(); i++) {
+                if (!mFragments.get(i).getCityName().equals(cityBeanList.get(i).getCityName())) {
+                    isEquals = false;
+                    break;
+                }
+            }
+            //如果相同，就不需要更新了
+            if (isEquals) {
+                isUpdate = false;
+            }
+        } else {
+            initImgView(cityBeanList.size());
+        }
+        if (isUpdate) {
+            mFragments.clear();
+            initData(cityBeanList);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }
