@@ -112,12 +112,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 Intent locationIntent = new Intent(getActivity(), LocationActivity.class);
                 getActivity().startActivity(locationIntent);
                 break;
-            case R.id.setting_tv_check_version:
-                Toast.makeText(getActivity(), "您当前版本为最新版", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.setting_tv_baidu_search:
                 Intent baiduIntent = new Intent(getActivity(), BaiduActivity.class);
                 getActivity().startActivity(baiduIntent);
+                break;
+            case R.id.setting_tv_check_version:
+                Toast.makeText(getActivity(), "您当前版本为最新版", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_tv_about:
                 Intent intent = new Intent(getActivity(), AboutActivity.class);

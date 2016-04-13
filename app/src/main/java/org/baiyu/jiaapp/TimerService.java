@@ -70,7 +70,7 @@ public class TimerService extends Service {
             public void run() {
                 updateWeather();
             }
-        }, 0, 20 * 60 * 1000);
+        }, 0, 10 * 60 * 1000);
 
         timer.schedule(new TimerTask() {
             @Override
